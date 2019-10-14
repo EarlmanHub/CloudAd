@@ -12,7 +12,8 @@
     <artifactId>ad-service</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>sercvice-common</module>
+        <module>common-service</module>
+        <module>sponsor-service</module>
     </modules>
     <packaging>pom</packaging>
 
