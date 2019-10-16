@@ -3,14 +3,12 @@ package com.itgone.ad.client.controller;
 import com.itgone.ad.client.feign.SponsorClient;
 import com.itgone.ad.client.vo.AdUserGetReq;
 import com.itgone.ad.vo.CommonResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,8 +20,14 @@ import java.util.List;
 @RequestMapping("/search/user")
 public class SearchController {
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    private final SponsorClient sponsorClient;
+
+    public SearchController(RestTemplate restTemplate, SponsorClient sponsorClient) {
+        this.restTemplate = restTemplate;
+        this.sponsorClient = sponsorClient;
+    }
 
     @GetMapping("/listByRibbon")
     public Object getUserListByRibbon() {
@@ -31,13 +35,10 @@ public class SearchController {
         return forEntity.getBody();
     }
 
-    @Autowired
-    private SponsorClient sponsorClient;
 
     @RequestMapping("/list2")
-    public CommonResponse<List<AdUserGetReq>> getUserListByFeign(){
-        CommonResponse<List<AdUserGetReq>> result = sponsorClient.getUserList("4");
-        return result;
+    public CommonResponse<List<AdUserGetReq>> getUserListByFeign() {
+        return sponsorClient.getUserList("4");
     }
 
 }
