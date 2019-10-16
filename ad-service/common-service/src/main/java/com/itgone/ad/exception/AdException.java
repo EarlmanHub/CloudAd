@@ -5,7 +5,7 @@ package com.itgone.ad.exception;
  * @Description:
  * @Date:Create：in 2019-10-10 23:02
  */
-public class AdException extends Exception {
+public class AdException extends RuntimeException {
 
     public AdException(String message) {
         super(message);

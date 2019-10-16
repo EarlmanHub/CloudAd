@@ -17,11 +17,13 @@ public class GlobalExceptionAdvice {
 
     @ExceptionHandler(AdException.class)
     public CommonResponse<Void> handle1(HttpServletRequest req, AdException ex) {
+        ex.printStackTrace();
         return CommonResponse.failure(ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public CommonResponse<Void> handle2(HttpServletRequest req, Exception ex) {
+        ex.printStackTrace();
         return CommonResponse.failure(ex.getMessage());
     }
 
